@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <link rel="stylesheet" href="/css/main.css">
+        <title>Contacts</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>контакты</h1>
+        </div>
+        <form th:action="@{/}" th:method="post">
+            <div class="contacts_block edit">
+                <div class="contact">
+                    <div class="contact_data">
+                        <div class="name_block">
+                            <input type="hidden" id="id" th:field="*{contact.id}">
+
+                            <p>👤 Имя:</p>
+                            <label for="firstName"></label><input type="text" id="firstName" required th:field="*{contact.firstName}">
+
+                            <p>Фамилия:</p>
+                            <label for="lastName"></label><input type="text" id="lastName" required th:field="*{contact.lastName}">
+
+                        </div>
+                        <div class="email_block">
+                            <p>📧 Email:</p>
+                            <label for="email"></label><input type="text" id="email" required th:field="*{contact.email}">
+                        </div>
+                        <div class="phone_block" th:value="${contact.phone}">
+                            <p>☎️ Номер телефона:</p>
+                            <label for="phone"></label><input type="text" id="phone" required th:field="*{contact.phone}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-buttons">
+                <button class="footer-button" type="submit">Сохранить</button>
+                <a th:href="@{/}" class="footer-button">Отменить</a>
+            </div>
+        </form>
+    </body>
+</html>

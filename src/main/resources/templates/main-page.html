@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+        <link rel="stylesheet" href="/css/main.css">
+        <title>Contacts</title>
+    </head>
+    <body>
+        <div class="header">
+            <h1>контакты</h1>
+        </div>
+        <div class="empty_block"></div>
+        <div class="contacts" th:each="contact: ${contactList}">
+            <div class="contacts_block">
+                <div class="contact">
+                    <div class="contact_data">
+                        <div class="name_block">
+                            <p>👤 Контакт:</p>
+                            <div class="name" th:text="${contact.firstName + ' ' + contact.lastName}">Имя Фамилия</div>
+                        </div>
+                        <div class="email_block">
+                            <p>📧 Email:</p>
+                            <div class="email" th:text="${contact.email}">email</div>
+                        </div>
+                        <div class="phone_block">
+                            <p>☎️ Номер телефона:</p>
+                            <div class="phone" th:text="${contact.phone}">номер телефона</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="edit_block">
+                    <form th:action="@{/edit/{id} (id=${contact.id})}" th:method="get">
+                        <button class="edit_button" type="submit">📝</button>
+                    </form>
+                    <form th:action="@{/remove/{id} (id=${contact.id})}" th:method="post">
+                        <button class="edit_button" type="submit">🗑</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-buttons">
+            <a th:href="@{/create}" class="footer-button">
+                Добавить контакт
+            </a>
+        </div>
+    </body>
+</html>
